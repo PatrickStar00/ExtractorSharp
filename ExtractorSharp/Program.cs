@@ -283,18 +283,18 @@ namespace ExtractorSharp {
         ///     加载注册表
         /// </summary>
         private static void LoadRegistry() {
-            try {
-                if (string.Empty.Equals(Config["GamePath"].Value) || !Directory.Exists(Config["GamePath"].Value)) {
-                    var path = Registry.CurrentUser
-                        .OpenSubKey("software\\tencent\\dnf", RegistryKeyPermissionCheck.Default,
-                            RegistryRights.ReadKey).GetValue("InstallPath").ToString();
-                    Config["GamePath"] = new ConfigValue(path);
-                }
-                Config["ResourcePath"] = new ConfigValue($"{Config["GamePath"]}\\ImagePacks2");
-                Config.Save();
-            } catch (Exception e) {
-                Console.Write(e);
-            }
+            //try {
+            //    if (string.Empty.Equals(Config["GamePath"].Value) || !Directory.Exists(Config["GamePath"].Value)) {
+            //        var path = Registry.CurrentUser
+            //            .OpenSubKey("software\\tencent\\dnf", RegistryKeyPermissionCheck.Default,
+            //                RegistryRights.ReadKey).GetValue("InstallPath").ToString();
+            //        Config["GamePath"] = new ConfigValue(path);
+            //    }
+            //    Config["ResourcePath"] = new ConfigValue($"{Config["GamePath"]}\\ImagePacks2");
+            //    Config.Save();
+            //} catch (Exception e) {
+            //    Console.Write(e);
+            //}
         }
 
 

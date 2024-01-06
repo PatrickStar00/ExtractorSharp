@@ -123,12 +123,43 @@ namespace ExtractorSharp.Core.Coder {
                 return List;
             }
             var count = stream.ReadInt();
-            for (var i = 0; i < count; i++) {
-                List.Add(new Album {
-                    Offset = stream.ReadInt(),
-                    Length = stream.ReadInt(),
-                    Path = stream.ReadPath()
+
+            //var offset = 0x006DA222;
+            //var length = 0x006EC43D - 0x006DA222;
+            //var path   = "a";
+
+            //List.Add(new Album
+            //{
+            //    Offset = offset,
+            //    Length = length,
+            //    Path = path
+            //});
+
+            Dictionary<int,int> test = new Dictionary<int,int>();
+
+            for (var i = 0; i < count; i++)
+            {
+
+                var offset = stream.ReadInt();
+                var length = stream.ReadInt();
+                var path = stream.ReadPath();
+
+                if (test.ContainsKey(offset + length))
+                    continue;
+
+                test.Add(offset + length, length);
+                List.Add(new Album
+                {
+                    Offset = offset,
+                    Length = length,
+                    Path = path
                 });
+
+                //List.Add(new Album {
+                //    Offset = stream.ReadInt(),
+                //    Length = stream.ReadInt(),
+                //    Path = stream.ReadPath()
+                //});
             }
             return List;
         }
